@@ -54,7 +54,7 @@ void Snake::goRight()
     isRight = true;
 }
 
-void Snake::update()
+void Snake::move()
 {
     //for(int i(serpiente.size() -1); i > 0; i++)
         //serpiente[i] = serpiente[i - 1];

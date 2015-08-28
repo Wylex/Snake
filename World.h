@@ -11,7 +11,6 @@ class World
 {
     private:
         sf::RenderWindow window;
-        sf::RectangleShape shape;
         Snake serpiente; 
 
         InputHandler impHandler; 

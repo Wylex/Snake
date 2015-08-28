@@ -2,9 +2,8 @@
 
 using namespace sf;
 
-World::World(): window(VideoMode(700, 500), "Snake"), shape(Vector2f(15,15)), impHandler()
+World::World(): window(VideoMode(700, 500), "Snake"), impHandler()
 {
-    shape.setFillColor(Color::White);
 }
 
 void World::start()
