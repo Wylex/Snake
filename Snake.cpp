@@ -56,8 +56,10 @@ void Snake::goRight()
 
 void Snake::update()
 {
-    for(int i(serpiente.size() -1); i > 0; i++)
-        serpiente[i] = serpiente[i - 1];
+    //for(int i(serpiente.size() -1); i > 0; i++)
+        //serpiente[i] = serpiente[i - 1];
+    if(serpiente.size() > 0)
+        serpiente[serpiente.size() - 1] = serpiente[0];
 
     if(isUp)
         serpiente[0].move(0, -size);
@@ -68,3 +70,11 @@ void Snake::update()
     else if(isLeft)
         serpiente[0].move(-size, 0);
 } 
+
+void Snake::grow()
+{
+    Vector2f lastPos = serpiente[serpiente.size() - 1].getPosition();
+
+    serpiente.push_back(RectangleShape(Vector2f(size, size)));
+    serpiente[serpiente.size() -1].setPosition(lastPos);
+}

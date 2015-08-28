@@ -2,23 +2,18 @@
 
 using namespace sf;
 
-World::World(): window(VideoMode(700, 500), "Snake"), shape(Vector2f(15,15))
+World::World(): window(VideoMode(700, 500), "Snake"), shape(Vector2f(15,15)), impHandler()
 {
     shape.setFillColor(Color::White);
 }
 
 void World::start()
 {
+    
     while(window.isOpen())
     {
-        Event event;
-        
-        while(window.pollEvent(event))
-        {
-            if(event.type == Event::Closed)
-                window.close();
-        }
-    
+        impHandler.handleInput(window);
+ 
         window.clear();
         window.draw(serpiente);
         window.display();

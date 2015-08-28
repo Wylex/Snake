@@ -12,23 +12,23 @@ class Command
 class goLeftCommand: public Command
 {
     public: 
-        virtual void execute(Snake & serpiente) { serpiente.goLeft(); }
-}
+        virtual void execute(Snake & serpiente);
+};
 
 class goRightCommand: public Command
 {
     public: 
-        virtual void execute(Snake & serpiente) { serpiente.goRight(); }
-}
+        virtual void execute(Snake & serpiente);
+};
 
 class goUpCommand: public Command
 {
     public: 
-        virtual void execute(Snake & serpiente) { serpiente.goUp(); }
-}
+        virtual void execute(Snake & serpiente);
+};
 
 class goDownCommand: public Command
 {
     public: 
-        virtual void execute(Snake & serpiente) { serpiente.goDown(); }
-}
+        virtual void execute(Snake & serpiente);
+};

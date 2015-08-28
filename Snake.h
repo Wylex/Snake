@@ -17,6 +17,7 @@ class Snake: public sf::Drawable
     public:
         Snake();
         void update();
+        void grow();
 
         void goUp();
         void goDown();

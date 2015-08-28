@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Snake.h"
+#include "InputHandler.h"
 
 class World
 {
@@ -12,6 +13,8 @@ class World
         sf::RenderWindow window;
         sf::RectangleShape shape;
         Snake serpiente; 
+
+        InputHandler impHandler; 
 
     public:
         World();
