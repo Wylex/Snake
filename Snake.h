@@ -25,6 +25,7 @@ class Snake: public sf::Drawable
         void goRight();
 
         virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
+        virtual sf::FloatRect getCollisionBox() const;
 };
 
 #endif

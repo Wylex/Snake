@@ -78,3 +78,8 @@ void Snake::grow()
     serpiente.push_back(RectangleShape(Vector2f(size, size)));
     serpiente[serpiente.size() -1].setPosition(lastPos);
 }
+
+sf::FloatRect Snake::getCollisionBox() const
+{
+    return serpiente[0].getGlobalBounds();
+} 

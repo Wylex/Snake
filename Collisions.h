@@ -16,11 +16,13 @@ class Collisions
         };
 
     private:
-        std::map<Key, Entidad> entidades;
+        std::map<Key, Entidad *> entidades;
     
     public:
-        void add(Key llave, Entidad entity);
+        void add(Key llave, Entidad * entity);
         void remove(Key llave);
+
+        void check();
 };
 
 #endif
