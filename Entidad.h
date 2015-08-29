@@ -9,7 +9,7 @@ class Entidad
 {
     public:
         virtual sf::FloatRect getCollisionBox() const = 0;
-        virtual void collisionDetected(Entidad & entity);
+        virtual void collisionDetected(Entidad & entity) {}
 };
 
 #endif

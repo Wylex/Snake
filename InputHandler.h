@@ -11,15 +11,15 @@ class InputHandler
 {
     public:
         InputHandler();
-        void handleInput(sf::RenderWindow & win);
+        std::shared_ptr<Command> handleInput(sf::RenderWindow & win);
 
     private: 
         sf::Event event;
  
-        std::unique_ptr<Command> keyJ;
-        std::unique_ptr<Command> keyK;
-        std::unique_ptr<Command> keyL;
-        std::unique_ptr<Command> keyH;
+        std::shared_ptr<Command> keyJ;
+        std::shared_ptr<Command> keyK;
+        std::shared_ptr<Command> keyL;
+        std::shared_ptr<Command> keyH;
 };
 
 #endif

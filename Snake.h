@@ -5,8 +5,9 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "Entidad.h"
 
-class Snake: public sf::Drawable
+class Snake: public sf::Drawable, public Entidad
 {
     private:
         std::vector<sf::RectangleShape> serpiente;
@@ -26,6 +27,7 @@ class Snake: public sf::Drawable
 
         virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
         virtual sf::FloatRect getCollisionBox() const;
+        virtual void collisionDetected(Entidad & entity) {}
 };
 
 #endif
