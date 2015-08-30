@@ -7,16 +7,17 @@ using namespace sf;
 Snake::Snake(): serpiente(1)
 {
     serpiente[0].setSize(Vector2f(size, size));
-    serpiente[0].setFillColor(Color(160, 150, 150));
+    serpiente[0].setFillColor(Color(190, 180, 180));
 
     velocidad = 3;
+    movimiento = 0;
 
     isGrowing = false;
 
     isUp = false;
     isDown = false;
     isLeft = false;
-    isRight = false;
+    isRight = true;
 }
 
 void Snake::draw(sf::RenderTarget & target, sf::RenderStates states) const
@@ -28,45 +29,53 @@ void Snake::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Snake::goUp()
 {
-    if(!isDown)
+    if(!isDown && movimiento > size + 2)
     {
         isUp = true;
         isDown = false;
         isLeft = false;
         isRight = false;
+
+        movimiento = 0;
     }
 }
 
 void Snake::goDown()
 {
-    if(!isUp)
+    if(!isUp && movimiento > size + 2)
     {
         isUp = false;
         isDown = true;
         isLeft = false;
         isRight = false;
+
+        movimiento = 0;
     }
 }
 
 void Snake::goLeft()
 {
-    if(!isRight)
+    if(!isRight && movimiento > size + 2)
     {
         isUp = false;
         isDown = false;
         isLeft = true;
         isRight = false;
+
+        movimiento = 0;
     }
 }
 
 void Snake::goRight()
 {
-    if(!isLeft)
+    if(!isLeft && movimiento > size + 2)
     {
         isUp = false;
         isDown = false;
         isLeft = false;
         isRight = true;
+
+        movimiento = 0;
     }
 }
 
@@ -76,8 +85,6 @@ void Snake::move()
 
     for(int i(serpiente.size() -1); i > 0; i--)
         serpiente[i].setPosition(serpiente[i-1].getPosition());
-    //if(serpiente.size() > 1)
-        //serpiente[serpiente.size() - 1].setPosition(serpiente[0].getPosition());
 
     if(isGrowing)
     {
@@ -95,15 +102,13 @@ void Snake::move()
         serpiente[0].move(velocidad, 0);
     else if(isLeft)
         serpiente[0].move(-velocidad, 0);
+
+    movimiento += velocidad;
 } 
 
 void Snake::grow()
 {
     isGrowing = true;
-    /*Vector2f lastPos = serpiente[serpiente.size() - 1].getPosition();
-
-    serpiente.push_back(RectangleShape(Vector2f(size, size)));
-    serpiente[serpiente.size() -1].setPosition(lastPos);*/
 }
 
 sf::FloatRect Snake::getCollisionBox() const

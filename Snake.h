@@ -12,6 +12,7 @@ class Snake: public sf::Drawable, public Entidad
     private:
         std::vector<sf::RectangleShape> serpiente;
         static const int size = 15;
+        int movimiento;
         int velocidad;
 
         bool isUp, isDown, isLeft, isRight;
