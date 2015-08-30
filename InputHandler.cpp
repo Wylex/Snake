@@ -19,6 +19,12 @@ std::shared_ptr<Command> InputHandler::handleInput(sf::RenderWindow & win)
             case sf::Event::KeyPressed:
                 if(event.key.code == sf::Keyboard::H)
                     return keyH;
+                else if(event.key.code == sf::Keyboard::J)
+                    return keyJ;
+                else if(event.key.code == sf::Keyboard::K)
+                    return keyK;
+                else if(event.key.code == sf::Keyboard::L)
+                    return keyL;
                 break;
         }
     }

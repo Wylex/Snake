@@ -32,7 +32,7 @@ void Snake::goUp()
 
 void Snake::goDown()
 {
-    isUp = true;
+    isUp = false;
     isDown = true;
     isLeft = false;
     isRight = false;

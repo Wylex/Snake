@@ -6,6 +6,8 @@
 #include <SFML/Graphics.hpp>
 #include "Snake.h"
 #include "InputHandler.h"
+#include "Command.h"
+#include <memory>
 
 class World
 {

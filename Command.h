@@ -1,5 +1,8 @@
 //Command.h
 
+#ifndef COMMAND_H
+#define COMMAND_H
+
 #include "Snake.h"
 
 class Command
@@ -32,3 +35,5 @@ class goDownCommand: public Command
     public: 
         virtual void execute(Snake & serpiente) const;
 };
+
+#endif
