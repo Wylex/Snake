@@ -5,18 +5,17 @@ using namespace sf;
 
 World::World(): window(VideoMode(700, 500), "Snake"), impHandler()
 {
+    fuente.loadFromFile("Ressources/Font.ttf");//FPS
+    txt.setFont(fuente);//FPS
+    txt.setPosition(10, 10);//FPS
+    txt.setColor(Color::Red);//FPS
+    txt.setCharacterSize(15);//FPS
 }
 
 void World::start()
 {
     Clock reloj, reloj2;
 
-    //Clock fps;
-    //int numLaps(0);
-    //Text txt;
-    //txt.setPosition(100, 100);
-    //txt.setColor(Color::Red);
- 
     while(window.isOpen())
     {
         std::shared_ptr<Command> comando = impHandler.handleInput(window);
@@ -35,19 +34,32 @@ void World::start()
             reloj.restart();
         } 
 
-        //if(fps.getElapsedTime() > seconds(1))
-        //{
-            //txt.setString(std::string(numLaps + " frames per second"));
-            //numLaps = 0;
-            //fps.restart();
-        //}
-
         window.clear();
         window.draw(serpiente);
-        //window.draw(txt);
+        showFPS();
+        window.draw(txt);//FPS
         window.display();
 
-        //numLaps++;
 
     }
+}
+
+void World::showFPS()
+{
+    static Clock tiempo;
+    static int numLaps(0);
+
+    static std::string str;
+
+    if(tiempo.getElapsedTime() > seconds(1))
+    {
+        str = std::to_string(numLaps);
+        str += " frames per second";
+        txt.setString(str);
+        numLaps = 0;
+        tiempo.restart();
+    }
+
+    numLaps++;
+
 }

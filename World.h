@@ -13,9 +13,13 @@ class World
 {
     private:
         sf::RenderWindow window;
+        sf::Text txt;// FPS
+        sf::Font fuente;// FPS
         Snake serpiente; 
 
         InputHandler impHandler; 
+
+        void showFPS();
 
     public:
         World();
