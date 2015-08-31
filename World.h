@@ -5,8 +5,10 @@
 
 #include <SFML/Graphics.hpp>
 #include "Snake.h"
+#include "Collisions.h"
 #include "InputHandler.h"
 #include "Command.h"
+#include "Food.h"
 #include "FPS.h"
 #include <memory>
 
@@ -16,12 +18,18 @@ class World
         sf::RenderWindow window;
         FPS framesPS;
         Snake serpiente; 
+        Food comida;
+
+        Collisions choques;
 
         InputHandler impHandler; 
 
     public:
         World();
         void start();
+
+        static const unsigned int width = 500;
+        static const unsigned int weight = 700;
 };
 
 #endif

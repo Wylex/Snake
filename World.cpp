@@ -3,8 +3,10 @@
 
 using namespace sf;
 
-World::World(): window(VideoMode(700, 500), "Snake"), impHandler(), framesPS("Ressources/Font.ttf")
+World::World(): window(VideoMode(weight, width), "Snake"), impHandler(), framesPS("Ressources/Font.ttf")
 {
+    choques.add(serpiente);
+    choques.add(comida);
 }
 
 void World::start()
@@ -30,10 +32,12 @@ void World::start()
         } 
 
         framesPS.update();
+        choques.check();
 
         window.clear();
         window.draw(serpiente);
         window.draw(framesPS);
+        window.draw(comida);
         window.display();
     }
 }

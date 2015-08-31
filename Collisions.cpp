@@ -1,28 +1,28 @@
 //Collisions.cpp
 
 #include "Collisions.h"
+#include <iostream>
 
-void Collisions::add(Key llave, Entidad * entity)
+void Collisions::add(Entidad & entity)
 {
-    entidades.insert(std::pair<Key, Entidad *>(llave, entity));    
+    entidades.push_back(&entity);
 }
 
-void Collisions::remove(Key llave)
+/*void Collisions::remove(Key llave)
 {
     entidades.erase(llave);
-}
+}*/
 
 void Collisions::check() 
 {
-    for(auto i(entidades.begin()); i != entidades.end(); i++) 
+    for(int i(0); i < entidades.size(); i++)
     {
-        auto b(i);
-        for(auto a(++b); a != entidades.end(); a++)
+        for(int b(i); b < entidades.size(); b++)
         {
-            if(i->second->getCollisionBox().intersects(a->second->getCollisionBox()))
+            if(entidades[i]->getCollisionBox().intersects(entidades[b]->getCollisionBox()))
             {
-                i->second->collisionDetected(*a->second);
-                a->second->collisionDetected(*i->second);
+                entidades[i]->collisionDetected(*entidades[b]);
+                entidades[b]->collisionDetected(*entidades[i]);
             }
         }
     }
