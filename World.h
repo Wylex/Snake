@@ -7,19 +7,17 @@
 #include "Snake.h"
 #include "InputHandler.h"
 #include "Command.h"
+#include "FPS.h"
 #include <memory>
 
 class World
 {
     private:
         sf::RenderWindow window;
-        sf::Text txt;// FPS
-        sf::Font fuente;// FPS
+        FPS framesPS;
         Snake serpiente; 
 
         InputHandler impHandler; 
-
-        void showFPS();
 
     public:
         World();

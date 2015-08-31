@@ -3,13 +3,8 @@
 
 using namespace sf;
 
-World::World(): window(VideoMode(700, 500), "Snake"), impHandler()
+World::World(): window(VideoMode(700, 500), "Snake"), impHandler(), framesPS("Ressources/Font.ttf")
 {
-    fuente.loadFromFile("Ressources/Font.ttf");//FPS
-    txt.setFont(fuente);//FPS
-    txt.setPosition(10, 10);//FPS
-    txt.setColor(Color::Red);//FPS
-    txt.setCharacterSize(15);//FPS
 }
 
 void World::start()
@@ -34,32 +29,11 @@ void World::start()
             reloj.restart();
         } 
 
+        framesPS.update();
+
         window.clear();
         window.draw(serpiente);
-        showFPS();
-        window.draw(txt);//FPS
+        window.draw(framesPS);
         window.display();
-
-
     }
-}
-
-void World::showFPS()
-{
-    static Clock tiempo;
-    static int numLaps(0);
-
-    static std::string str;
-
-    if(tiempo.getElapsedTime() > seconds(1))
-    {
-        str = std::to_string(numLaps);
-        str += " frames per second";
-        txt.setString(str);
-        numLaps = 0;
-        tiempo.restart();
-    }
-
-    numLaps++;
-
 }
