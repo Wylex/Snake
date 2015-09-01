@@ -16,13 +16,25 @@ class World
 {
     private:
         sf::RenderWindow window;
-        FPS framesPS;
-        Snake serpiente; 
-        Food comida;
+        int state;
 
-        Collisions choques;
+        //Game
+            FPS framesPS;
+            Snake serpiente; 
+            Food comida;
 
-        InputHandler impHandler; 
+            Collisions choques;
+
+            InputHandler impHandler; 
+
+        //Menu
+            sf::Texture textura;
+            sf::Sprite sprite;
+
+    
+    private:
+        void startGame();
+        void startMenu();
 
     public:
         World();
