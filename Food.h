@@ -4,7 +4,6 @@
 #define FOOD_H
 
 #include "Entidad.h"
-#include <typeinfo>
 #include "Snake.h"
 #include <SFML/Graphics.hpp>
 
@@ -23,9 +22,9 @@ class Food: public Entidad, public sf::Drawable
 
         void update();
 
-        virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
-        virtual sf::FloatRect getCollisionBox() const;
-        virtual void collisionDetected(Entidad & entity);
+        virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
+        virtual sf::FloatRect getCollisionBox() const override;
+        virtual void collisionDetected(Entidad & entity) override;
 };
 
 #endif

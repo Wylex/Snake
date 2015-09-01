@@ -18,21 +18,11 @@ void World::start()
         std::shared_ptr<Command> comando = impHandler.handleInput(window);
         if(comando != 0)
             comando->execute(serpiente);
- 
-        if(reloj2.getElapsedTime() > seconds(1))
-        {
-            serpiente.grow();
-            reloj2.restart();
-        } 
 
-        if(reloj.getElapsedTime() > microseconds(20000))
-        {
-            serpiente.move();
-            reloj.restart();
-        } 
-
+        serpiente.update();
         framesPS.update();
         comida.update();
+
         choques.check();
 
         window.clear();

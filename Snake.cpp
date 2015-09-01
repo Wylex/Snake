@@ -115,3 +115,21 @@ sf::FloatRect Snake::getCollisionBox() const
 {
     return serpiente[0].getGlobalBounds();
 } 
+
+void Snake::update()
+{
+    if(reloj.getElapsedTime() > microseconds(20000))
+    {
+        move();
+        reloj.restart();
+    } 
+}
+
+void Snake::collisionDetected(Entidad & entity)
+{
+    if(typeid(Food) == typeid(entity))
+    {    
+        grow();
+        grow();
+    }
+}

@@ -6,6 +6,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "Entidad.h"
+#include "Food.h"
 
 class Snake: public sf::Drawable, public Entidad
 {
@@ -18,19 +19,22 @@ class Snake: public sf::Drawable, public Entidad
         bool isUp, isDown, isLeft, isRight;
         bool isGrowing;
 
+        sf::Clock reloj;
+
     public:
         Snake();
         void move();
         void grow();
+        void update();
 
         void goUp();
         void goDown();
         void goLeft();
         void goRight();
 
-        virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
-        virtual sf::FloatRect getCollisionBox() const;
-        virtual void collisionDetected(Entidad & entity) {}
+        virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
+        virtual sf::FloatRect getCollisionBox() const override;
+        virtual void collisionDetected(Entidad & entity) override;
 };
 
 #endif
