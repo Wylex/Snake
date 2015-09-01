@@ -5,7 +5,8 @@
 #include <ctime>
 #include <cstdlib>
 
-#include <iostream>
+//#include <iostream>
+
 
 Food::Food(): comida(radio)
 {
@@ -18,6 +19,8 @@ Food::Food(): comida(radio)
     int num2 = rand() % (World::width - 4*radio);
 
     comida.setPosition(num1 + 2*radio, num2 + 2*radio);
+
+    collision = false;
 }
 
 void Food::draw(sf::RenderTarget & target, sf::RenderStates states) const
@@ -32,11 +35,29 @@ sf::FloatRect Food::getCollisionBox() const
 
 void Food::collisionDetected(Entidad & entity)
 {
-    if(typeid(Snake) == typeid(entity))
-    {    
-        int num1 = rand() % (World::weight - 4*radio);
-        int num2 = rand() % (World::width - 4*radio);
+    entidad = &entity;
 
-        comida.setPosition(num1 + 2*radio, num2 + 2*radio);
-    }
+    if(!collision)
+        reloj.restart();
+
+    collision = true;
 }
+
+void Food::update()
+{
+    if(collision)
+    {
+        if(reloj.getElapsedTime() > sf::milliseconds(150))
+        {
+            if(typeid(Snake) == typeid(*entidad))
+            {    
+                int num1 = rand() % (World::weight - 4*radio);
+                int num2 = rand() % (World::width - 4*radio);
+
+                comida.setPosition(num1 + 2*radio, num2 + 2*radio);
+            }
+
+            collision = false;
+        }
+    }
+} 

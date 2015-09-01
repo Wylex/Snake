@@ -32,12 +32,13 @@ void World::start()
         } 
 
         framesPS.update();
+        comida.update();
         choques.check();
 
         window.clear();
+        window.draw(comida);
         window.draw(serpiente);
         window.draw(framesPS);
-        window.draw(comida);
         window.display();
     }
 }
