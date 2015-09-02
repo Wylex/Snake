@@ -1,23 +1,22 @@
-//Food.h
+//Trampa.h
 
-#ifndef FOOD_H
-#define FOOD_H
+#ifndef TRAMPA_H
+#define TRAMPA_H
 
 #include "Entidad.h"
-#include "Trampa.h"
 #include "Snake.h"
 #include <SFML/Graphics.hpp>
 
-class Food: public Entidad, public sf::Drawable
+class Trampa: public Entidad, public sf::Drawable
 {
     private:
-        sf::CircleShape comida;
+        sf::CircleShape trap;
         bool collision;
         sf::Clock reloj;
         Entidad * entidad;
 
     public:
-        Food();
+        Trampa();
 
         static const int radio = 10;
 

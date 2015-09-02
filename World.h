@@ -9,6 +9,7 @@
 #include "InputHandler.h"
 #include "Command.h"
 #include "Food.h"
+#include "Trampa.h"
 #include "FPS.h"
 #include <memory>
 
@@ -22,6 +23,7 @@ class World
             FPS framesPS;
             Snake serpiente; 
             Food comida;
+            Trampa trap;
 
             Collisions choques;
 

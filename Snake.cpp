@@ -1,6 +1,7 @@
 //Snake.cpp
 
 #include "Snake.h"
+#include "World.h"
 
 using namespace sf;
 
@@ -8,6 +9,7 @@ Snake::Snake(): serpiente(1)
 {
     serpiente[0].setSize(Vector2f(size, size));
     serpiente[0].setFillColor(Color(190, 180, 180));
+    serpiente[0].setPosition(sf::Vector2f(10, World::width/2 - size/2));
 
     velocidad = 3;
     movimiento = 0;
@@ -132,4 +134,26 @@ void Snake::collisionDetected(Entidad & entity)
         grow();
         grow();
     }
+
+    else if(typeid(Trampa) == typeid(entity))
+        restart();
+}
+
+void Snake::restart()
+{
+    serpiente.clear();
+    serpiente.push_back(RectangleShape(Vector2f(size, size)));
+
+    serpiente[0].setFillColor(Color(190, 180, 180));
+    serpiente[0].setPosition(sf::Vector2f(10, World::width/2 - size/2));
+
+    velocidad = 3;
+    movimiento = 0;
+
+    isGrowing = false;
+
+    isUp = false;
+    isDown = false;
+    isLeft = false;
+    isRight = true;
 }

@@ -8,6 +8,7 @@
 #include "Entidad.h"
 #include "Food.h"
 
+
 class Snake: public sf::Drawable, public Entidad
 {
     private:
@@ -20,6 +21,8 @@ class Snake: public sf::Drawable, public Entidad
         bool isGrowing;
 
         sf::Clock reloj;
+
+        void restart();
 
     public:
         Snake();

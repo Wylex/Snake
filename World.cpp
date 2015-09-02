@@ -7,6 +7,7 @@ World::World(): window(VideoMode(weight, width), "Snake"), impHandler(), framesP
 {
     choques.add(serpiente);
     choques.add(comida);
+    choques.add(trap);
 
     textura.loadFromFile("Ressources/Menu.png");
     sprite.setTexture(textura);
@@ -34,10 +35,12 @@ void World::startGame()
     serpiente.update();
     framesPS.update();
     comida.update();
+    trap.update();
 
     choques.check();
 
     window.clear();
+    window.draw(trap);
     window.draw(comida);
     window.draw(serpiente);
     window.draw(framesPS);

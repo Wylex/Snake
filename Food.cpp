@@ -47,15 +47,25 @@ void Food::update()
 {
     if(collision)
     {
-        if(reloj.getElapsedTime() > sf::milliseconds(150))
+        if(typeid(Snake) == typeid(*entidad))
         {
-            if(typeid(Snake) == typeid(*entidad))
+            if(reloj.getElapsedTime() > sf::milliseconds(150))
             {    
                 int num1 = rand() % (World::weight - 4*radio);
                 int num2 = rand() % (World::width - 4*radio);
 
                 comida.setPosition(num1 + 2*radio, num2 + 2*radio);
+
+                collision = false;
             }
+        }
+
+        else if(typeid(Trampa) == typeid(*entidad))
+        {
+            int num1 = rand() % (World::weight - 4*radio);
+            int num2 = rand() % (World::width - 4*radio);
+
+            comida.setPosition(num1 + 2*radio, num2 + 2*radio);
 
             collision = false;
         }
