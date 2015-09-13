@@ -15,10 +15,10 @@ Food::Food(): comida(radio)
 
     srand(time(0));
 
-    int num1 = rand() % (World::weight - 4*radio);
-    int num2 = rand() % (World::width - 4*radio);
+    int num1 = rand() % World::filas;
+    int num2 = rand() % World::columnas;
 
-    comida.setPosition(num1 + 2*radio, num2 + 2*radio);
+    comida.setPosition(num2 * Snake::size, num1 * Snake::size);
 
     collision = false;
 }
@@ -51,10 +51,10 @@ void Food::update()
         {
             if(reloj.getElapsedTime() > sf::milliseconds(150))
             {    
-                int num1 = rand() % (World::weight - 4*radio);
-                int num2 = rand() % (World::width - 4*radio);
+                int num1 = rand() % World::filas;
+                int num2 = rand() % World::columnas;
 
-                comida.setPosition(num1 + 2*radio, num2 + 2*radio);
+                comida.setPosition(num2 * Snake::size, num1 * Snake::size);
 
                 collision = false;
             }

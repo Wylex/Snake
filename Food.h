@@ -19,7 +19,7 @@ class Food: public Entidad, public sf::Drawable
     public:
         Food();
 
-        static const int radio = 10;
+        static const int radio = 7.5;
 
         void update();
 

@@ -14,10 +14,10 @@ Trampa::Trampa(): trap(radio)
 
     srand(time(0));
 
-    int num1 = rand() % (World::weight - 4*radio);
-    int num2 = rand() % (World::width - 4*radio);
+    int num1 = rand() % World::filas;
+    int num2 = rand() % World::columnas;
 
-    trap.setPosition(num1 + 2*radio, num2 + 2*radio);
+    trap.setPosition(num2 * Snake::size, num1 * Snake::size);
 
     collision = false;
 }

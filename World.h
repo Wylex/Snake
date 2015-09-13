@@ -42,8 +42,10 @@ class World
         World();
         void start();
 
-        static const unsigned int width = 500;
-        static const unsigned int weight = 700;
+        static const unsigned int filas = 35;
+        static const unsigned int columnas = 45;
+        static const unsigned int width = Snake::size * filas;
+        static const unsigned int weight = Snake::size * columnas;
 };
 
 #endif

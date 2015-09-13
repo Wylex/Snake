@@ -9,10 +9,10 @@ Snake::Snake(): serpiente(1)
 {
     serpiente[0].setSize(Vector2f(size, size));
     serpiente[0].setFillColor(Color(190, 180, 180));
-    serpiente[0].setPosition(sf::Vector2f(10, World::width/2 - size/2));
+    serpiente[0].setPosition(sf::Vector2f(0, World::width/2 - size/2));
 
-    velocidad = 3;
-    movimiento = 0;
+    velocidad = size;
+    aMovido = false;
 
     isGrowing = false;
 
@@ -20,6 +20,8 @@ Snake::Snake(): serpiente(1)
     isDown = false;
     isLeft = false;
     isRight = true;
+
+    grow();
 }
 
 void Snake::draw(sf::RenderTarget & target, sf::RenderStates states) const
@@ -31,53 +33,75 @@ void Snake::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Snake::goUp()
 {
-    if(!isDown && movimiento > size + 2)
+    if(!isDown and aMovido)// && movimiento > size + 2)
     {
+        /*if(isLeft)
+        {
+            serpiente[0].setOrigin(0, size);
+            serpiente[0].setRotation(90);
+        }*/
+        /*if(isRight)
+        {
+            serpiente[0].setOrigin(size/2, size);
+            serpiente[0].setRotation(240);
+
+            serpiente[0].move(0, size/2);
+        }*/
+     
+
         isUp = true;
         isDown = false;
         isLeft = false;
         isRight = false;
 
-        movimiento = 0;
+        //movimiento = 0;
+        
+        aMovido = false;
     }
 }
 
 void Snake::goDown()
 {
-    if(!isUp && movimiento > size + 2)
+    if(!isUp and aMovido)// && movimiento > size + 2)
     {
         isUp = false;
         isDown = true;
         isLeft = false;
         isRight = false;
 
-        movimiento = 0;
+        //movimiento = 0;
+        
+        aMovido = false;
     }
 }
 
 void Snake::goLeft()
 {
-    if(!isRight && movimiento > size + 2)
+    if(!isRight and aMovido)// && movimiento > size + 2)
     {
         isUp = false;
         isDown = false;
         isLeft = true;
         isRight = false;
 
-        movimiento = 0;
+        //movimiento = 0;
+        
+        aMovido = false;
     }
 }
 
 void Snake::goRight()
 {
-    if(!isLeft && movimiento > size + 2)
+    if(!isLeft and aMovido)// && movimiento > size + 2)
     {
         isUp = false;
         isDown = false;
         isLeft = false;
         isRight = true;
 
-        movimiento = 0;
+        //movimiento = 0;
+        
+        aMovido = false;
     }
 }
 
@@ -105,7 +129,19 @@ void Snake::move()
     else if(isLeft)
         serpiente[0].move(-velocidad, 0);
 
-    movimiento += velocidad;
+    aMovido = true;
+
+    sf::Vector2f pos = serpiente[0].getPosition();
+    if(pos.x > World::weight)
+        serpiente[0].setPosition(0, pos.y);
+    else if(pos.y > World::width)
+        serpiente[0].setPosition(pos.x, 0);
+    else if(pos.x < 0)
+        serpiente[0].setPosition(World::weight - size, pos.y);
+    else if(pos.y < 0)
+        serpiente[0].setPosition(pos.x, World::width - size);
+
+    //movimiento += velocidad;
 } 
 
 void Snake::grow()
@@ -120,7 +156,8 @@ sf::FloatRect Snake::getCollisionBox() const
 
 void Snake::update()
 {
-    if(reloj.getElapsedTime() > microseconds(20000))
+    //if(reloj.getElapsedTime() > microseconds(20000))
+    if(reloj.getElapsedTime() > milliseconds(50))
     {
         move();
         reloj.restart();
@@ -147,8 +184,8 @@ void Snake::restart()
     serpiente[0].setFillColor(Color(190, 180, 180));
     serpiente[0].setPosition(sf::Vector2f(10, World::width/2 - size/2));
 
-    velocidad = 3;
-    movimiento = 0;
+    velocidad = size;
+    //movimiento = 0;
 
     isGrowing = false;
 
@@ -156,4 +193,6 @@ void Snake::restart()
     isDown = false;
     isLeft = false;
     isRight = true;
+
+    grow();
 }
