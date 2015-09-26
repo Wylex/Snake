@@ -156,8 +156,8 @@ sf::FloatRect Snake::getCollisionBox() const
 
 void Snake::update()
 {
-    //if(reloj.getElapsedTime() > microseconds(20000))
     if(reloj.getElapsedTime() > milliseconds(50))
+    //if(reloj.getElapsedTime() > milliseconds(200))
     {
         move();
         reloj.restart();

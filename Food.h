@@ -11,6 +11,9 @@
 class Food: public Entidad, public sf::Drawable
 {
     private:
+        //sf::Sprite comida;
+        //sf::Texture textura;
+
         sf::CircleShape comida;
         bool collision;
         sf::Clock reloj;

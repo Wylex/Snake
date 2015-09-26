@@ -8,7 +8,7 @@
 //#include <iostream>
 
 
-Trampa::Trampa(): trap(radio)
+Trampa::Trampa(): trap(radio, 4)
 {
     trap.setFillColor(sf::Color::Red);
 

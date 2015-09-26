@@ -8,10 +8,15 @@
 //#include <iostream>
 
 
-Food::Food(): comida(radio)
+Food::Food(): comida(radio, 3)
 {
-    comida.setPointCount(3);    
-    comida.setFillColor(sf::Color(90, 120, 180));
+    //textura.loadFromFile("Ressources/aaa.png");
+    //comida.setTexture(textura);
+
+    //comida.setPointCount(300);
+    comida.setFillColor(sf::Color::Black);
+    comida.setOutlineThickness(-8 + radio);
+    comida.setOutlineColor(sf::Color(90, 120, 180));
 
     srand(time(0));
 

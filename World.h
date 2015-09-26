@@ -22,8 +22,8 @@ class World
         //Game
             FPS framesPS;
             Snake serpiente; 
-            Food comida;
             Trampa trap;
+            Food comida;
 
             Collisions choques;
 
