@@ -132,9 +132,9 @@ void Snake::move()
     aMovido = true;
 
     sf::Vector2f pos = serpiente[0].getPosition();
-    if(pos.x > World::weight)
+    if(pos.x >= World::weight)
         serpiente[0].setPosition(0, pos.y);
-    else if(pos.y > World::width)
+    else if(pos.y >= World::width)
         serpiente[0].setPosition(pos.x, 0);
     else if(pos.x < 0)
         serpiente[0].setPosition(World::weight - size, pos.y);

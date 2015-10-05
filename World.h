@@ -44,8 +44,9 @@ class World
 
         static const unsigned int filas = 35;
         static const unsigned int columnas = 45;
-        static const unsigned int width = Snake::size * filas;
-        static const unsigned int weight = Snake::size * columnas;
+        static const unsigned int size = 15;
+        static const unsigned int width = size * filas;
+        static const unsigned int weight = size * columnas;
 };
 
 #endif
