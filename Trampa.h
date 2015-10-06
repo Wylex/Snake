@@ -16,9 +16,9 @@ class Trampa: public Entidad, public sf::Drawable
         Entidad * entidad;
 
     public:
-        Trampa();
+        Trampa(int f, int c, int s);
 
-        static const int radio = 7.5;
+        double radio;
 
         void update();
 

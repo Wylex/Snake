@@ -24,10 +24,7 @@ class Snake: public sf::Drawable, public Entidad
         void restart();
 
     public:
-        static const int size = 15;
-
-    public:
-        Snake();
+        Snake(int f, int c, int s);
         void move();
         void grow();
         void update();

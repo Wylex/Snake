@@ -8,16 +8,21 @@
 //#include <iostream>
 
 
-Trampa::Trampa(): trap(radio, 4)
+Trampa::Trampa(int f, int c, int s): Entidad(f, c, s)
 {
     trap.setFillColor(sf::Color::Red);
+
+    radio = size/2.0;
+
+    trap.setRadius(radio);
+    trap.setPointCount(4);
 
     srand(time(0));
 
     int num1 = rand() % World::filas;
     int num2 = rand() % World::columnas;
 
-    trap.setPosition(num2 * Snake::size, num1 * Snake::size);
+    trap.setPosition(num2 * size, num1 * size);
 
     collision = false;
 }

@@ -5,7 +5,7 @@
 
 using namespace sf;
 
-Snake::Snake(): serpiente(1)
+Snake::Snake(int f, int c, int s): Entidad(f, c, s), serpiente(1)
 {
     serpiente[0].setSize(Vector2f(size, size));
     serpiente[0].setFillColor(Color(190, 180, 180));

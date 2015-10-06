@@ -3,7 +3,8 @@
 
 using namespace sf;
 
-World::World(): window(VideoMode(weight, width), "Snake"), impHandler(), framesPS("Ressources/Font.ttf")
+World::World(): window(VideoMode(weight, width), "Snake"), impHandler(), framesPS("Ressources/Font.ttf"), 
+comida(filas, columnas, size), serpiente(filas, columnas, size), trap(filas, columnas, size)
 {
     choques.add(serpiente);
     choques.add(comida);

@@ -11,8 +11,10 @@
 class Food: public Entidad, public sf::Drawable
 {
     private:
-        //sf::Sprite comida;
-        //sf::Texture textura;
+
+        //unsigned int filas;
+        //unsigned int columnas;
+        //unsigned int size;
 
         sf::CircleShape comida;
         bool collision;
@@ -20,9 +22,9 @@ class Food: public Entidad, public sf::Drawable
         Entidad * entidad;
 
     public:
-        Food();
+        Food(int f, int c, int s);
 
-        static const int radio = 7.5;
+        double radio;
 
         void update();
 
