@@ -16,6 +16,7 @@ class InputHandler
     private: 
         sf::Event event;
  
+        std::shared_ptr<Command> keyEsc;
         std::shared_ptr<Command> keyJ;
         std::shared_ptr<Command> keyK;
         std::shared_ptr<Command> keyL;

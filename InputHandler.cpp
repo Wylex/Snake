@@ -1,8 +1,11 @@
 //InputHandler.cpp
 
+#include <iostream>
+
 #include "InputHandler.h"
 
-InputHandler::InputHandler():keyH(new goLeftCommand), keyJ(new goDownCommand), keyK(new goUpCommand), keyL(new goRightCommand)
+InputHandler::InputHandler():keyH(new goLeftCommand), keyJ(new goDownCommand), keyK(new goUpCommand), keyL(new goRightCommand),
+keyEsc(new pauseCommand)
 {
 }
 
@@ -25,6 +28,8 @@ std::shared_ptr<Command> InputHandler::handleInput(sf::RenderWindow & win)
                     return keyK;
                 else if(event.key.code == sf::Keyboard::L)
                     return keyL;
+                else if(event.key.code == sf::Keyboard::Escape)
+                    return keyEsc;
                 break;
         }
     }

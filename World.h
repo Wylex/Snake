@@ -4,6 +4,7 @@
 #define WORLD_H
 
 #include <SFML/Graphics.hpp>
+#include <typeinfo>
 #include "Snake.h"
 #include "Collisions.h"
 #include "InputHandler.h"
@@ -20,6 +21,8 @@ class World
         int state;
 
         //Game
+            bool pause;
+
             FPS framesPS;
             Snake serpiente; 
             Trampa trap;

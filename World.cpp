@@ -3,9 +3,13 @@
 
 using namespace sf;
 
+#include <iostream>
+
 World::World(): window(VideoMode(weight, width), "Snake"), impHandler(), framesPS("Ressources/Font.ttf"), 
 comida(filas, columnas, size), serpiente(filas, columnas, size), trap(filas, columnas, size)
 {
+    pause = false;
+
     choques.add(serpiente);
     choques.add(comida);
     choques.add(trap);
@@ -31,14 +35,28 @@ void World::startGame()
 {
     std::shared_ptr<Command> comando = impHandler.handleInput(window);
     if(comando != 0)
+    {
+      if(typeid(pauseCommand) == typeid(*comando))
+      {
+        if(pause)
+          pause = false;
+        else if(!pause)
+          pause = true;
+      } 
+      else
         comando->execute(serpiente);
+    }
+    
+    if(!pause)
+    {
+      serpiente.update();
+      framesPS.update();
+      comida.update();
+      trap.update();
 
-    serpiente.update();
-    framesPS.update();
-    comida.update();
-    trap.update();
+      choques.check();
+    }
 
-    choques.check();
 
     window.clear();
     window.draw(trap);
@@ -50,7 +68,7 @@ void World::startGame()
 
 void World::startMenu()
 {
-    sf::Event event;
+    Event event;
 
     while(window.pollEvent(event))
     {

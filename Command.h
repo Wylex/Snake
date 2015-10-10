@@ -12,6 +12,12 @@ class Command
         virtual void execute(Snake & serpiente) const = 0;
 };
 
+class pauseCommand: public Command
+{
+    private: 
+        virtual void execute(Snake & serpiente) const {}
+};
+
 class goLeftCommand: public Command
 {
     public: 
