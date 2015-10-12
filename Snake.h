@@ -6,7 +6,10 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "Entidad.h"
+#include "Trampa.h"
 #include "Food.h"
+
+#include "Marcador.h"
 
 
 class Snake: public sf::Drawable, public Entidad
@@ -22,6 +25,8 @@ class Snake: public sf::Drawable, public Entidad
         sf::Clock reloj;
 
         void restart();
+
+        Marcador puntos;
 
     public:
         Snake(int f, int c, int s);

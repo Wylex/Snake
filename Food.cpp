@@ -83,3 +83,8 @@ void Food::update()
         }
     }
 } 
+
+double Food::getPosicion()
+{
+  return (comida.getPosition().x * comida.getPosition().y);
+}

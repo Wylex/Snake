@@ -1,7 +1,6 @@
 //Trampa.cpp
 
 #include "Trampa.h"
-#include "World.h"
 #include <ctime>
 #include <cstdlib>
 
@@ -19,8 +18,8 @@ Trampa::Trampa(int f, int c, int s): Entidad(f, c, s)
 
     srand(time(0));
 
-    int num1 = rand() % World::filas;
-    int num2 = rand() % World::columnas;
+    int num1 = rand() % filas;
+    int num2 = rand() % columnas;
 
     trap.setPosition(num2 * size, num1 * size);
 
@@ -55,8 +54,8 @@ void Trampa::update()
         {
             if(typeid(Snake) == typeid(*entidad))
             {    
-                /*int num1 = rand() % (World::weight - 4*radio);
-                int num2 = rand() % (World::width - 4*radio);
+                /*int num1 = rand() % (size * filas - 4*radio);
+                int num2 = rand() % (size * columnas - 4*radio);
 
                 comida.setPosition(num1 + 2*radio, num2 + 2*radio);*/
             }
@@ -65,3 +64,8 @@ void Trampa::update()
         }
     }
 } 
+
+/*double Trampa::getPosition()
+{
+  return trap.getPosition().x * trap.getPosition().y;
+}*/

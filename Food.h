@@ -27,6 +27,8 @@ class Food: public Entidad, public sf::Drawable
         double radio;
 
         void update();
+  
+        double getPosicion();
 
         virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
         virtual sf::FloatRect getCollisionBox() const override;

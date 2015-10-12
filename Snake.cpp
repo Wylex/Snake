@@ -1,15 +1,16 @@
 //Snake.cpp
 
 #include "Snake.h"
-#include "World.h"
+#include <iostream>
 
 using namespace sf;
 
-Snake::Snake(int f, int c, int s): Entidad(f, c, s), serpiente(1)
+Snake::Snake(int f, int c, int s): Entidad(f, c, s), serpiente(1), puntos(c*s)
 {
     serpiente[0].setSize(Vector2f(size, size));
     serpiente[0].setFillColor(Color(190, 180, 180));
-    serpiente[0].setPosition(sf::Vector2f(0, World::width/2 - size/2));
+    //serpiente[0].setPosition(sf::Vector2f(0, size * columnas/2 - size/2));
+    serpiente[0].setPosition(sf::Vector2f(0, int(filas/2)*size));
 
     velocidad = size;
     aMovido = false;
@@ -26,9 +27,10 @@ Snake::Snake(int f, int c, int s): Entidad(f, c, s), serpiente(1)
 
 void Snake::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
+    target.draw(puntos);
+
     for(int i(serpiente.size() -1); i >= 0; i--)
         target.draw(serpiente[i], states);
-
 }
 
 void Snake::goUp()
@@ -132,14 +134,14 @@ void Snake::move()
     aMovido = true;
 
     sf::Vector2f pos = serpiente[0].getPosition();
-    if(pos.x >= World::weight)
+    if(pos.x >= (size * columnas))
         serpiente[0].setPosition(0, pos.y);
-    else if(pos.y >= World::width)
+    else if(pos.y >= (size * filas))
         serpiente[0].setPosition(pos.x, 0);
     else if(pos.x < 0)
-        serpiente[0].setPosition(World::weight - size, pos.y);
+        serpiente[0].setPosition((size * columnas) - size, pos.y);
     else if(pos.y < 0)
-        serpiente[0].setPosition(pos.x, World::width - size);
+        serpiente[0].setPosition(pos.x, (size * filas) - size);
 
     //movimiento += velocidad;
 } 
@@ -166,14 +168,24 @@ void Snake::update()
 
 void Snake::collisionDetected(Entidad & entity)
 {
+    static double p;
+
     if(typeid(Food) == typeid(entity))
     {    
-        grow();
-        grow();
-    }
+        if(p != (static_cast<Food *>(&entity))->getPosicion())
+        {
+          std::cout << "colision" << std::endl;
+          grow();
+          puntos.subirPuntuacion(1);
+        }
 
+        //p = Food(entity).getPosicion();
+        p = (static_cast<Food *>(&entity))->getPosicion();
+        //p = (static_cast<Food> entity).getPosicion();
+    }
     else if(typeid(Trampa) == typeid(entity))
-        restart();
+      restart();
+
 }
 
 void Snake::restart()
@@ -182,7 +194,7 @@ void Snake::restart()
     serpiente.push_back(RectangleShape(Vector2f(size, size)));
 
     serpiente[0].setFillColor(Color(190, 180, 180));
-    serpiente[0].setPosition(sf::Vector2f(10, World::width/2 - size/2));
+    serpiente[0].setPosition(sf::Vector2f(0, int(filas/2)*size));
 
     velocidad = size;
     //movimiento = 0;

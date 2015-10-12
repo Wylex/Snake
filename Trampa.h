@@ -22,6 +22,8 @@ class Trampa: public Entidad, public sf::Drawable
 
         void update();
 
+        //virtual double getPosition() override;
+
         virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
         virtual sf::FloatRect getCollisionBox() const override;
         virtual void collisionDetected(Entidad & entity) override;

@@ -17,6 +17,7 @@ class Entidad
         Entidad(int f, int c, int s) {filas = f; columnas = c; size = s;}
         virtual sf::FloatRect getCollisionBox() const = 0;
         virtual void collisionDetected(Entidad & entity) = 0;
+        //virtual double getPosicion() = 0;
 };
 
 #endif
