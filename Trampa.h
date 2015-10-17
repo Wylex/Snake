@@ -4,7 +4,6 @@
 #define TRAMPA_H
 
 #include "Objeto.h"
-#include "Snake.h"
 #include <SFML/Graphics.hpp>
 
 class Trampa: public Objeto<sf::CircleShape>

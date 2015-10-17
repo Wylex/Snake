@@ -8,13 +8,14 @@ using namespace sf;
 #include <iostream>
 
 World::World(): window(VideoMode(weight, width), "Snake"), impHandler(), framesPS("Ressources/Font.ttf"), 
-comida(filas, columnas, size), serpiente(filas, columnas, size), trap(filas, columnas, size)
+comida(filas, columnas, size), serpiente(filas, columnas, size), trap(filas, columnas, size), modif(filas, columnas, size)
 {
     pause = false;
 
     choques.add(serpiente);
     choques.add(comida);
     choques.add(trap);
+    choques.add(modif);
 
     textura.loadFromFile("Ressources/Menu.png");
     sprite.setTexture(textura);
@@ -55,6 +56,7 @@ void World::startGame()
       framesPS.update();
       comida.update();
       trap.update();
+      modif.update();
 
       choques.check();
     }
@@ -63,6 +65,7 @@ void World::startGame()
     window.clear();
     window.draw(trap);
     window.draw(comida);
+    window.draw(modif);
     window.draw(serpiente);
     window.draw(framesPS);
     window.display();

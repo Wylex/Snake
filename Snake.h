@@ -17,7 +17,6 @@ class Snake: public sf::Drawable, public Entidad
     private:
         std::vector<sf::RectangleShape> serpiente;
         bool aMovido;
-        int velocidad;
 
         bool isUp, isDown, isLeft, isRight;
         bool isGrowing;
@@ -27,6 +26,8 @@ class Snake: public sf::Drawable, public Entidad
         void restart();
 
         Marcador puntos;
+
+        int velocidad;
 
     public:
         Snake(int f, int c, int s);
@@ -38,6 +39,8 @@ class Snake: public sf::Drawable, public Entidad
         void goDown();
         void goLeft();
         void goRight();
+
+        void changeSpeed(int s);
 
         virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
         virtual sf::FloatRect getCollisionBox() const override;

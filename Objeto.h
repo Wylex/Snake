@@ -4,8 +4,6 @@
 #define OBJETO_H
 
 #include "Entidad.h"
-//#include "Trampa.h"
-//#include "Snake.h"
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include <cstdlib>
@@ -14,14 +12,14 @@
 template <typename T>
 class Objeto: public Entidad, public sf::Drawable
 {
-
     protected:
-
-        //shared_ptr<sf::Shape> objeto;
         T objeto;
         bool collision;
         sf::Clock reloj;
         Entidad * entidad;
+        
+    protected:
+        void updatePosition();  
 
     public:
         Objeto(int f, int c, int s);
@@ -40,10 +38,7 @@ Objeto<T>::Objeto(int f, int c, int s): Entidad(f, c, s)
 {
     srand(time(0));
 
-    int num1 = rand() % filas;
-    int num2 = rand() % columnas;
-
-    objeto.setPosition(num2 * size, num1 * size);
+    updatePosition();
 
     collision = false;
 }
@@ -81,5 +76,14 @@ double Objeto<T>::getPosicion()
 {
   return (objeto.getPosition().x * objeto.getPosition().y);
 } 
+
+template <typename T>
+void Objeto<T>::updatePosition()
+{
+  int num1 = rand() % filas;
+  int num2 = rand() % columnas;
+
+  objeto.setPosition(num2 * size, num1 * size);
+}
 
 #endif

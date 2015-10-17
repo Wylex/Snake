@@ -10,6 +10,7 @@
 #include "InputHandler.h"
 #include "Command.h"
 #include "Food.h"
+#include "Modificador.h"
 #include "Trampa.h"
 #include "FPS.h"
 #include <memory>
@@ -27,6 +28,7 @@ class World
             Trampa trap;
             Snake serpiente; 
             Food comida;
+            Modificador modif;
 
             Collisions choques;
 

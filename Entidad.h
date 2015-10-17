@@ -9,9 +9,9 @@
 class Entidad
 {
     protected:
-        unsigned int filas;
-        unsigned int columnas;
-        unsigned int size;
+        int filas;
+        int columnas;
+        int size;
 
     public:
         Entidad(int f, int c, int s) {filas = f; columnas = c; size = s;}

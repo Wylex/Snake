@@ -7,22 +7,20 @@ using namespace sf;
 
 Snake::Snake(int f, int c, int s): Entidad(f, c, s), serpiente(1), puntos(c*s)
 {
+    velocidad = 50;
+
     serpiente[0].setSize(Vector2f(size, size));
     serpiente[0].setFillColor(Color(190, 180, 180));
-    //serpiente[0].setPosition(sf::Vector2f(0, size * columnas/2 - size/2));
     serpiente[0].setPosition(sf::Vector2f(0, int(filas/2)*size));
 
-    velocidad = size;
     aMovido = false;
 
-    isGrowing = false;
+    isGrowing = true;
 
     isUp = false;
     isDown = false;
     isLeft = false;
     isRight = true;
-
-    grow();
 }
 
 void Snake::draw(sf::RenderTarget & target, sf::RenderStates states) const
@@ -35,22 +33,8 @@ void Snake::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Snake::goUp()
 {
-    if(!isDown and aMovido)// && movimiento > size + 2)
+    if(!isDown and aMovido)
     {
-        /*if(isLeft)
-        {
-            serpiente[0].setOrigin(0, size);
-            serpiente[0].setRotation(90);
-        }*/
-        /*if(isRight)
-        {
-            serpiente[0].setOrigin(size/2, size);
-            serpiente[0].setRotation(240);
-
-            serpiente[0].move(0, size/2);
-        }*/
-     
-
         isUp = true;
         isDown = false;
         isLeft = false;
@@ -71,22 +55,18 @@ void Snake::goDown()
         isLeft = false;
         isRight = false;
 
-        //movimiento = 0;
-        
         aMovido = false;
     }
 }
 
 void Snake::goLeft()
 {
-    if(!isRight and aMovido)// && movimiento > size + 2)
+    if(!isRight and aMovido)
     {
         isUp = false;
         isDown = false;
         isLeft = true;
         isRight = false;
-
-        //movimiento = 0;
         
         aMovido = false;
     }
@@ -94,14 +74,12 @@ void Snake::goLeft()
 
 void Snake::goRight()
 {
-    if(!isLeft and aMovido)// && movimiento > size + 2)
+    if(!isLeft and aMovido)
     {
         isUp = false;
         isDown = false;
         isLeft = false;
         isRight = true;
-
-        //movimiento = 0;
         
         aMovido = false;
     }
@@ -123,13 +101,13 @@ void Snake::move()
     }
 
     if(isUp)
-        serpiente[0].move(0, -velocidad);
+        serpiente[0].move(0, -size);
     else if(isDown)
-        serpiente[0].move(0, velocidad);
+        serpiente[0].move(0, size);
     else if(isRight)
-        serpiente[0].move(velocidad, 0);
+        serpiente[0].move(size, 0);
     else if(isLeft)
-        serpiente[0].move(-velocidad, 0);
+        serpiente[0].move(-size, 0);
 
     aMovido = true;
 
@@ -142,8 +120,6 @@ void Snake::move()
         serpiente[0].setPosition((size * columnas) - size, pos.y);
     else if(pos.y < 0)
         serpiente[0].setPosition(pos.x, (size * filas) - size);
-
-    //movimiento += velocidad;
 } 
 
 void Snake::grow()
@@ -158,8 +134,7 @@ sf::FloatRect Snake::getCollisionBox() const
 
 void Snake::update()
 {
-    if(reloj.getElapsedTime() > milliseconds(50))
-    //if(reloj.getElapsedTime() > milliseconds(200))
+    if(reloj.getElapsedTime() > milliseconds(velocidad))
     {
         move();
         reloj.restart();
@@ -178,9 +153,7 @@ void Snake::collisionDetected(Entidad & entity)
           puntos.subirPuntuacion(1);
         }
 
-        //p = Food(entity).getPosicion();
         p = (static_cast<Food *>(&entity))->getPosicion();
-        //p = (static_cast<Food> entity).getPosicion();
     }
     else if(typeid(Trampa) == typeid(entity))
       restart();
@@ -195,15 +168,17 @@ void Snake::restart()
     serpiente[0].setFillColor(Color(190, 180, 180));
     serpiente[0].setPosition(sf::Vector2f(0, int(filas/2)*size));
 
-    velocidad = size;
-    //movimiento = 0;
-
-    isGrowing = false;
+    isGrowing = true;
 
     isUp = false;
     isDown = false;
     isLeft = false;
     isRight = true;
 
-    grow();
+    velocidad = 50;
+}
+
+void Snake::changeSpeed(int s)
+{
+  velocidad += s;
 }

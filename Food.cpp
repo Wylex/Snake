@@ -27,10 +27,7 @@ void Food::update()
         {
             if(reloj.getElapsedTime() > sf::milliseconds(150))
             {    
-                int num1 = rand() % filas;
-                int num2 = rand() % columnas;
-
-                objeto.setPosition(num2 * size, num1 * size);
+                updatePosition();
 
                 collision = false;
             }
@@ -38,10 +35,7 @@ void Food::update()
 
         else if(typeid(Trampa) == typeid(*entidad))
         {
-            int num1 = rand() % filas;
-            int num2 = rand() % columnas;
-
-            objeto.setPosition(num2 * size, num1 * size);
+            updatePosition();
 
             collision = false;
         }

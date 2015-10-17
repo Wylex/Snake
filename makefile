@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-lsfml-graphics -lsfml-window -lsfml-system
 
-OBJECTS = .main.o .World.o .Command.o .InputHandler.o .Collisions.o .Food.o .FPS.o .Snake.o .Trampa.o .Marcador.o 
+OBJECTS = .main.o .World.o .Command.o .InputHandler.o .Collisions.o .Food.o .FPS.o .Snake.o .Trampa.o .Marcador.o .Modificador.o
 
 start: $(OBJECTS)   
 	$(CC) -std=c++11 .*.o $(CFLAGS)
@@ -9,7 +9,7 @@ start: $(OBJECTS)
 .main.o: main.cpp World.h
 	$(CC) -std=c++11 -o $@ -c main.cpp
 
-.World.o: World.cpp World.h Snake.h Collisions.h InputHandler.h Command.h Food.h Trampa.h FPS.h
+.World.o: World.cpp World.h Snake.h Collisions.h InputHandler.h Command.h Food.h Trampa.h FPS.h Modificador.h
 	$(CC) -std=c++11 -o $@ -c World.cpp
 
 .Command.o: Command.cpp Command.h Snake.h
@@ -30,8 +30,11 @@ start: $(OBJECTS)
 .Snake.o: Snake.cpp Snake.h Entidad.h Food.h Trampa.h Marcador.h
 	$(CC) -std=c++11 -o $@ -c Snake.cpp
 
-.Trampa.o: Trampa.cpp Trampa.h Snake.h Objeto.h
+.Trampa.o: Trampa.cpp Trampa.h Objeto.h
 	$(CC) -std=c++11 -o $@ -c Trampa.cpp
 
 .Marcador.o: Marcador.cpp Marcador.h
 	$(CC) -std=c++11 -o $@ -c Marcador.cpp
+
+.Modificador.o: Modificador.cpp Modificador.h Objeto.h Snake.h Trampa.h Food.h
+	$(CC) -std=c++11 -o $@ -c Modificador.cpp
