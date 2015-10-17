@@ -174,7 +174,6 @@ void Snake::collisionDetected(Entidad & entity)
     {    
         if(p != (static_cast<Food *>(&entity))->getPosicion())
         {
-          std::cout << "colision" << std::endl;
           grow();
           puntos.subirPuntuacion(1);
         }
