@@ -3,30 +3,17 @@
 #ifndef TRAMPA_H
 #define TRAMPA_H
 
-#include "Entidad.h"
+#include "Objeto.h"
 #include "Snake.h"
 #include <SFML/Graphics.hpp>
 
-class Trampa: public Entidad, public sf::Drawable
+class Trampa: public Objeto<sf::CircleShape>
 {
-    private:
-        sf::CircleShape trap;
-        bool collision;
-        sf::Clock reloj;
-        Entidad * entidad;
-
     public:
+
         Trampa(int f, int c, int s);
 
-        double radio;
-
         void update();
-
-        //virtual double getPosition() override;
-
-        virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
-        virtual sf::FloatRect getCollisionBox() const override;
-        virtual void collisionDetected(Entidad & entity) override;
 };
 
 #endif

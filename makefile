@@ -21,7 +21,7 @@ start: $(OBJECTS)
 .Collisions.o: Collisions.cpp Collisions.h Entidad.h
 	$(CC) -std=c++11 -o $@ -c Collisions.cpp
 
-.Food.o: Food.cpp Food.h Entidad.h Trampa.h Snake.h Objeto.h
+.Food.o: Food.cpp Food.h Trampa.h Snake.h Objeto.h
 	$(CC) -std=c++11 -o $@ -c Food.cpp
 
 .FPS.o: FPS.cpp FPS.h
@@ -30,7 +30,7 @@ start: $(OBJECTS)
 .Snake.o: Snake.cpp Snake.h Entidad.h Food.h Trampa.h Marcador.h
 	$(CC) -std=c++11 -o $@ -c Snake.cpp
 
-.Trampa.o: Trampa.cpp Trampa.h Entidad.h Snake.h
+.Trampa.o: Trampa.cpp Trampa.h Snake.h Objeto.h
 	$(CC) -std=c++11 -o $@ -c Trampa.cpp
 
 .Marcador.o: Marcador.cpp Marcador.h

@@ -83,14 +83,6 @@ void Objeto<T>::collisionDetected(Entidad & entity)
 template <typename T>
 void Objeto<T>::update()
 {
-    /*if(collision)
-    {
-        if(typeid(Snake) == typeid(*entidad))
-        {
-            if(reloj.getElapsedTime() > sf::milliseconds(150))
-            {    
-                int num1 = rand() % filas;
-                int num2 = rand() % columnas;*/
 }
 
 template <typename T>
