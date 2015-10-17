@@ -24,8 +24,8 @@ class World
             bool pause;
 
             FPS framesPS;
-            Snake serpiente; 
             Trampa trap;
+            Snake serpiente; 
             Food comida;
 
             Collisions choques;

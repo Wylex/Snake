@@ -26,11 +26,9 @@ class Objeto: public Entidad, public sf::Drawable
     public:
         Objeto(int f, int c, int s);
 
-        double radio;
-
-        void update();
+        virtual void update();
   
-        double getPosicion();
+        virtual double getPosicion();
 
         virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
         virtual sf::FloatRect getCollisionBox() const override;
@@ -40,13 +38,6 @@ class Objeto: public Entidad, public sf::Drawable
 template <typename T>
 Objeto<T>::Objeto(int f, int c, int s): Entidad(f, c, s)
 {
-    //radio = size/2.0;
-
-    //comida.setPointCount(3);
-    //comida.setRadius(radio);
-
-    //comida.setFillColor(sf::Color(90, 120, 180));
-
     srand(time(0));
 
     int num1 = rand() % filas;

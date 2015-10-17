@@ -26,7 +26,8 @@ void Trampa::update()
 
       }*/
 
-      collision = false;
     }
+
+    collision = false;
   }
 } 

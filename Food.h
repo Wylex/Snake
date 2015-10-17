@@ -11,7 +11,6 @@
 class Food: public Objeto<sf::CircleShape>
 {
     public:
-
         Food(int f, int c, int s);
 
         void update();
