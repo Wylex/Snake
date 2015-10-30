@@ -12,58 +12,58 @@
 template <typename T>
 class Objeto: public Entidad, public sf::Drawable
 {
-    protected:
-        T objeto;
-        bool collision;
-        sf::Clock reloj;
-        Entidad * entidad;
-        
-    protected:
-        void updatePosition();  
+	protected:
+		T objeto;
+		bool collision;
+		sf::Clock reloj;
+		Entidad * entidad;
 
-    public:
-        Objeto(int f, int c, int s);
+	protected:
+		void updatePosition();  
 
-        virtual void update();
-  
-        virtual double getPosicion();
+	public:
+		Objeto(int f, int c, int s);
 
-        virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
-        virtual sf::FloatRect getCollisionBox() const override;
-        virtual void collisionDetected(Entidad & entity) override;
+		virtual void update();
+
+		virtual double getPosicion();
+
+		virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
+		virtual sf::FloatRect getCollisionBox() const override;
+		virtual void collisionDetected(Entidad & entity) override;
 };
 
 template <typename T>
 Objeto<T>::Objeto(int f, int c, int s): Entidad(f, c, s)
 {
-    srand(time(0));
+	srand(time(0));
 
-    updatePosition();
+	updatePosition();
 
-    collision = false;
+	collision = false;
 }
 
 template <typename T>
 void Objeto<T>::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-    target.draw(objeto, states);
+	target.draw(objeto, states);
 }
 
 template <typename T>
 sf::FloatRect Objeto<T>::getCollisionBox() const
 {
-    return objeto.getGlobalBounds();
+	return objeto.getGlobalBounds();
 }
 
 template <typename T>
 void Objeto<T>::collisionDetected(Entidad & entity)
 {
-    entidad = &entity;
+	entidad = &entity;
 
-    if(!collision)
-        reloj.restart();
+	if(!collision)
+		reloj.restart();
 
-    collision = true;
+	collision = true;
 }
 
 template <typename T>
@@ -74,16 +74,16 @@ void Objeto<T>::update()
 template <typename T>
 double Objeto<T>::getPosicion()
 {
-  return (objeto.getPosition().x * objeto.getPosition().y);
+	return (objeto.getPosition().x * objeto.getPosition().y);
 } 
 
 template <typename T>
 void Objeto<T>::updatePosition()
 {
-  int num1 = rand() % filas;
-  int num2 = rand() % columnas;
+	int num1 = rand() % filas;
+	int num2 = rand() % columnas;
 
-  objeto.setPosition(num2 * size, num1 * size);
+	objeto.setPosition(num2 * size, num1 * size);
 }
 
 #endif
