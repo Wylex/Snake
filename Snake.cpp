@@ -139,6 +139,15 @@ void Snake::update()
 		move();
 		reloj.restart();
 	} 
+
+	for(int i(0); i < modificadores.size(); i++)
+	{
+		if(modificadores[i].reloj.getElapsedTime().asSeconds() > modificadores[i].duracion)
+		{
+			velocidad -= modificadores[i].speed;
+			modificadores.erase(modificadores.begin()+i);
+		}
+	}
 }
 
 void Snake::collisionDetected(Entidad & entity)
@@ -181,4 +190,11 @@ void Snake::restart()
 void Snake::changeSpeed(int s, int t)
 {
 	velocidad += s;
+
+	ModifSpeed a;
+	a.speed = s;
+	a.duracion = t;
+	sf::Clock c;
+	a.reloj = c;
+	modificadores.push_back(a);
 }

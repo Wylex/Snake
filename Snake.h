@@ -32,7 +32,8 @@ class Snake: public sf::Drawable, public Entidad
 		struct ModifSpeed
 		{
 			int speed;
-			sf::Time tiempo;
+			sf::Clock reloj;
+			int duracion;
 		};
 		std::vector<ModifSpeed> modificadores;
 
