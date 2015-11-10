@@ -33,14 +33,12 @@ void Snake::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Snake::goUp()
 {
-	if(!isDown and aMovido)
+	if(!isDown and aMovido)//Si no está moviendo en dirección contraria y ya ha movido por lo menos un cuadrado
 	{
 		isUp = true;
 		isDown = false;
 		isLeft = false;
 		isRight = false;
-
-		//movimiento = 0;
 
 		aMovido = false;
 	}
@@ -48,7 +46,7 @@ void Snake::goUp()
 
 void Snake::goDown()
 {
-	if(!isUp and aMovido)// && movimiento > size + 2)
+	if(!isUp and aMovido)
 	{
 		isUp = false;
 		isDown = true;
@@ -89,9 +87,11 @@ void Snake::move()
 {
 	Vector2f lastPos = serpiente[serpiente.size() - 1].getPosition();
 
+	//Mover cuerpo
 	for(int i(serpiente.size() -1); i > 0; i--)
 		serpiente[i].setPosition(serpiente[i-1].getPosition());
 
+	//Añadir cuadrado
 	if(isGrowing)
 	{
 		serpiente.push_back(RectangleShape(Vector2f(size, size)));
@@ -100,6 +100,7 @@ void Snake::move()
 		isGrowing = false;
 	}
 
+	//Mover cabeza
 	if(isUp)
 		serpiente[0].move(0, -size);
 	else if(isDown)
@@ -111,6 +112,7 @@ void Snake::move()
 
 	aMovido = true;
 
+	//Verificar que la serpiente está dentro de los bordes
 	sf::Vector2f pos = serpiente[0].getPosition();
 	if(pos.x >= (size * columnas))
 		serpiente[0].setPosition(0, pos.y);
@@ -120,6 +122,8 @@ void Snake::move()
 		serpiente[0].setPosition((size * columnas) - size, pos.y);
 	else if(pos.y < 0)
 		serpiente[0].setPosition(pos.x, (size * filas) - size);
+
+	checkCollisionsBody();//Check if head eats body
 } 
 
 void Snake::grow()
@@ -166,7 +170,6 @@ void Snake::collisionDetected(Entidad & entity)
 	}
 	else if(typeid(Trampa) == typeid(entity))
 		restart();
-
 }
 
 void Snake::restart()
@@ -197,4 +200,13 @@ void Snake::changeSpeed(int s, int t)
 	sf::Clock c;
 	a.reloj = c;
 	modificadores.push_back(a);
+}
+
+void Snake::checkCollisionsBody()
+{
+	for(int i(1); i < serpiente.size(); i++)
+	{
+		if(serpiente[0].getGlobalBounds().intersects(serpiente[i].getGlobalBounds()))
+			serpiente.erase(serpiente.begin() + i, serpiente.end() -1);
+	}
 }

@@ -30,7 +30,7 @@ void Modificador::update()
 			updatePosition();
 
 			collision = false;
-			static_cast<Snake *>(entidad)->changeSpeed(50, 5);
+			static_cast<Snake *>(entidad)->changeSpeed(30, 15);
 		}
 	}
 }

@@ -5,6 +5,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <typeinfo>
+#include <memory>
+#include <vector>
 #include "Snake.h"
 #include "Collisions.h"
 #include "InputHandler.h"
@@ -13,45 +15,50 @@
 #include "Modificador.h"
 #include "Trampa.h"
 #include "FPS.h"
-#include <memory>
+#include "Wall.h"
 
 class World
 {
-    private:
-        sf::RenderWindow window;
-        int state;
+	private:
+		sf::RenderWindow window;
+		int state;
 
-        //Game
-            bool pause;
+		//Game
+		bool pause;
 
-            FPS framesPS;
-            Trampa trap;
-            Snake serpiente; 
-            Food comida;
-            Modificador modif;
+		FPS framesPS;
+		Trampa trap;
+		Snake serpiente; 
+		Food comida;
+		Modificador modif;
 
-            Collisions choques;
+		Collisions choques;
 
-            InputHandler impHandler; 
+		InputHandler impHandler; 
 
-        //Menu
-            sf::Texture textura;
-            sf::Sprite sprite;
+		//Menu
+		sf::Texture textura;
+		sf::Sprite sprite;
 
-    
-    private:
-        void startGame();
-        void startMenu();
+		//Pause Menu
+		sf::Font fnt;
+		sf::Text txt;
 
-    public:
-        World();
-        void start();
 
-        static const unsigned int filas = 35;
-        static const unsigned int columnas = 45;
-        static const unsigned int size = 15;
-        static const unsigned int width = size * filas;
-        static const unsigned int weight = size * columnas;
+	private:
+		void startGame();
+		void startMenu();
+		void startMapCreation();
+
+	public:
+		World();
+		void start();
+
+		static const unsigned int filas = 35;
+		static const unsigned int columnas = 45;
+		static const unsigned int size = 15;
+		static const unsigned int width = size * columnas;
+		static const unsigned int height = size * filas;
 };
 
 #endif

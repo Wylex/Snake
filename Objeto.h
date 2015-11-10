@@ -15,7 +15,6 @@ class Objeto: public Entidad, public sf::Drawable
 	protected:
 		T objeto;
 		bool collision;
-		sf::Clock reloj;
 		Entidad * entidad;
 
 	protected:
@@ -59,9 +58,6 @@ template <typename T>
 void Objeto<T>::collisionDetected(Entidad & entity)
 {
 	entidad = &entity;
-
-	if(!collision)
-		reloj.restart();
 
 	collision = true;
 }

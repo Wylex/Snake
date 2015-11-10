@@ -26,7 +26,7 @@ class Snake: public sf::Drawable, public Entidad
 
 		Marcador puntos;
 
-		int velocidad;
+		int velocidad;//Tiempo para que la serpiente es mueva otra vez
 
 		//Vector con el tiempo restante de un modificador y la velocidad que ha modificado
 		struct ModifSpeed
@@ -37,10 +37,13 @@ class Snake: public sf::Drawable, public Entidad
 		};
 		std::vector<ModifSpeed> modificadores;
 
+	private:
+		void grow();
+		void checkCollisionsBody();
+		void move();
+
 	public:
 		Snake(int f, int c, int s);
-		void move();
-		void grow();
 		void update();
 
 		void goUp();

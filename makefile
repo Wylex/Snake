@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS= -lsfml-graphics -lsfml-window -lsfml-system
 
-OBJECTS = .main.o .World.o .Command.o .InputHandler.o .Collisions.o .Food.o .FPS.o .Snake.o .Trampa.o .Marcador.o .Modificador.o
+OBJECTS = .main.o .World.o .Command.o .InputHandler.o .Collisions.o .Food.o .FPS.o .Snake.o .Trampa.o .Marcador.o .Modificador.o .Wall.o
 
 start: $(OBJECTS)   
 	$(CC) -std=c++11 .*.o $(CFLAGS)
@@ -9,7 +9,7 @@ start: $(OBJECTS)
 .main.o: main.cpp World.h
 	$(CC) -std=c++11 -o $@ -c main.cpp
 
-.World.o: World.cpp World.h Snake.h Collisions.h InputHandler.h Command.h Food.h Trampa.h FPS.h Modificador.h
+.World.o: World.cpp World.h Snake.h Collisions.h InputHandler.h Command.h Food.h Trampa.h FPS.h Modificador.h Wall.h
 	$(CC) -std=c++11 -o $@ -c World.cpp
 
 .Command.o: Command.cpp Command.h Snake.h
@@ -38,3 +38,6 @@ start: $(OBJECTS)
 
 .Modificador.o: Modificador.cpp Modificador.h Objeto.h Snake.h Trampa.h Food.h
 	$(CC) -std=c++11 -o $@ -c Modificador.cpp
+
+.Wall.o: Wall.h Wall.cpp Entidad.h
+	$(CC) -std=c++11 -o $@ -c Wall.cpp
