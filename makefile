@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS= -lsfml-graphics -lsfml-window -lsfml-system
 
-OBJECTS = .main.o .World.o .Command.o .InputHandler.o .Collisions.o .Food.o .FPS.o .Snake.o .Trampa.o .Marcador.o .Modificador.o .Wall.o
+OBJECTS = .main.o .World.o .InputHandler.o .Collisions.o .Food.o .FPS.o .Snake.o .Trampa.o .Marcador.o .Modificador.o .Wall.o .Command.o
 
 start: $(OBJECTS)   
 	$(CC) -std=c++11 .*.o $(CFLAGS)

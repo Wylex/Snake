@@ -20,7 +20,7 @@ std::shared_ptr<Command> InputHandler::handleInput(sf::RenderWindow & win)
 				break;
 
 			case sf::Event::LostFocus:
-				return keyEsc;
+					return keyEsc;
 				break;
 
 			case sf::Event::KeyPressed:

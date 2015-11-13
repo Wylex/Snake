@@ -132,7 +132,7 @@ void World::startMapCreation()
 				else if(event.key.code == sf::Keyboard::A)
 					{
 						muros.push_back(Wall(filas, columnas, size, 1, 0, 0, true));
-						i++;
+						i = muros.size() -1;
 					}
 				//Movimientos muro
 				else if(event.key.code == sf::Keyboard::H)
@@ -180,4 +180,9 @@ void World::startMapCreation()
 		window.draw(muros[i]);
 	window.display();
 
+}
+
+void World::drawGrid()
+{
+	//static std::array<sdt::array<sf::Rectangle, columnas>, filas> > arr;
 }

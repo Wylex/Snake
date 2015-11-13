@@ -1,25 +1,21 @@
 #include "Command.h"
 
-Command::~Command()
+void goLeftCommand::execute(Snake & gameActor) const
 {
+    gameActor.goLeft();
 }
 
-void goLeftCommand::execute(Snake & serpiente) const
+void goRightCommand::execute(Snake & gameActor) const
 {
-    serpiente.goLeft();
+    gameActor.goRight();
 }
 
-void goRightCommand::execute(Snake & serpiente) const
+void goDownCommand::execute(Snake & gameActor) const
 {
-    serpiente.goRight();
+    gameActor.goDown();
 }
 
-void goDownCommand::execute(Snake & serpiente) const
+void goUpCommand::execute(Snake & gameActor) const
 {
-    serpiente.goDown();
-}
-
-void goUpCommand::execute(Snake & serpiente) const
-{
-    serpiente.goUp();
+    gameActor.goUp();
 }
