@@ -113,8 +113,9 @@ void World::startMenu()
 void World::startMapCreation()
 {
 	Event event;
-	static int i(-1);
 
+	static int i(-1);
+	static bool showGrille = false;	
 	static std::vector<Wall> muros;
 
 	while(window.pollEvent(event))
@@ -155,7 +156,7 @@ void World::startMapCreation()
 				//change focus
 				else if(event.key.code == sf::Keyboard::N)
 				{
-					if(i != -1)
+					if(i > 0)
 					{
 						i++;
 						if(i >= muros.size())
@@ -164,13 +165,21 @@ void World::startMapCreation()
 				}
 				else if(event.key.code == sf::Keyboard::P)
 				{
-					if(i != -1)
+					if(i < 0)
 					{
 						i--;
 						if(i <= 0)
 							i = muros.size() -1;
 					}
 				}
+				//Mostrar tabla
+				else if(event.key.code == sf::Keyboard::S)
+				{
+					if(showGrille)
+						showGrille = false;
+					else
+						showGrille = true;
+				}	
 				break;
 		}
 	}
@@ -178,11 +187,44 @@ void World::startMapCreation()
 	window.clear();
 	for(int i(0); i < muros.size(); i++)
 		window.draw(muros[i]);
+	if(showGrille)
+		drawGrid();
 	window.display();
 
 }
 
 void World::drawGrid()
 {
-	//static std::array<sdt::array<sf::Rectangle, columnas>, filas> > arr;
+	static int i = 0;
+	static sf::RectangleShape lineasVerticales[columnas + 1];
+	static sf::RectangleShape lineasHorizontales[filas + 1];
+
+	if(i == 0)
+	{
+		i++;
+
+		//Posicionar lineas verticales
+		for(int i(0); i < columnas +1; i++)
+		{
+			lineasVerticales[i].setSize(sf::Vector2f(1, filas*size));
+			lineasVerticales[i].setPosition(sf::Vector2f(size*i, 0));
+			lineasVerticales[i].setFillColor(sf::Color(230, 220, 220));
+		}
+		lineasVerticales[columnas].move(-1, 0);
+
+		//Posicionar lineas horizontales
+		for(int i(0); i < filas +1; i++)
+		{
+			lineasHorizontales[i].setSize(sf::Vector2f(columnas*size, 1));
+			lineasHorizontales[i].setPosition(sf::Vector2f(0, size*i));
+			lineasHorizontales[i].setFillColor(sf::Color(230, 220, 220));
+		}
+		lineasHorizontales[filas].move(0, -1);
+	}	
+
+	//Draw lines
+	for(int i(0); i < columnas +1; i++)
+		window.draw(lineasVerticales[i]);
+	for(int i(0); i < filas +1; i++)
+		window.draw(lineasHorizontales[i]);
 }

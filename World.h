@@ -61,8 +61,8 @@ class World
 		static const unsigned int columnas = 45;
 		static const unsigned int size = 15;
 		//static const unsigned int filas = 25;
-		//tatic const unsigned int columnas = 35;
-		//atic const unsigned int size = 20;
+		//static const unsigned int columnas = 35;
+		//static const unsigned int size = 20;
 		static const unsigned int width = size * columnas;
 		static const unsigned int height = size * filas;
 };

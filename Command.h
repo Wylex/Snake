@@ -20,25 +20,25 @@ class pauseCommand: public Command
 class goLeftCommand: public Command
 {
     public: 
-        virtual void execute(Snake & gameActor) const override {gameActor.goLeft();}
+        virtual void execute(Snake & gameActor) const override;
 };
 
 class goRightCommand: public Command
 {
     public: 
-        virtual void execute(Snake & gameActor) const override {gameActor.goRight();}
+        virtual void execute(Snake & gameActor) const override;
 };
 
 class goUpCommand: public Command
 {
     public: 
-        virtual void execute(Snake & gameActor) const override {gameActor.goUp();}
+        virtual void execute(Snake & gameActor) const override;
 };
 
 class goDownCommand: public Command
 {
     public: 
-        virtual void execute(Snake & gameActor) const override {gameActor.goDown();}
+        virtual void execute(Snake & gameActor) const override;
 };
 
 #endif
