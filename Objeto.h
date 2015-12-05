@@ -10,7 +10,7 @@
 #include <memory>
 
 template <typename T>
-class Objeto: public Entidad, public sf::Drawable
+class Objeto: public Entidad
 {
 	protected:
 		T objeto;

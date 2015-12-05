@@ -11,7 +11,7 @@
 #include "Marcador.h"
 
 
-class Snake: public sf::Drawable, public Entidad
+class Snake: public Entidad
 {
 	private:
 		std::vector<sf::RectangleShape> serpiente;

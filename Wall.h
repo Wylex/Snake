@@ -6,7 +6,7 @@
 #include <vector>
 #include "Entidad.h"
 
-class Wall: public Entidad, public sf::Drawable
+class Wall: public Entidad
 {
 	public:
 		Wall(int f, int c, int s, int length, int x, int y, bool hori);
@@ -18,6 +18,7 @@ class Wall: public Entidad, public sf::Drawable
 		void move(int i);
 		void grow();
 		void decrease();
+		void toggleColor();
 
 		virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
 		//virtual double getPosicion() override;
@@ -25,6 +26,7 @@ class Wall: public Entidad, public sf::Drawable
 	private:
 		std::vector<sf::RectangleShape> objeto;
 
+		sf::Color actualColor;
 		int xPos;
 		int yPos;
 		int numberSquares;

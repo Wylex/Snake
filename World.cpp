@@ -114,8 +114,10 @@ void World::startMapCreation()
 {
 	Event event;
 
-	static int i(-1);
+	static int wallNumber(-1);
 	static bool showGrille = false;	
+	static int xPos = 0;
+	static int yPos = 0;
 	static std::vector<Wall> muros;
 
 	while(window.pollEvent(event))
@@ -132,44 +134,64 @@ void World::startMapCreation()
 				//Nuevo muro
 				else if(event.key.code == sf::Keyboard::A)
 					{
-						muros.push_back(Wall(filas, columnas, size, 1, 0, 0, true));
-						i = muros.size() -1;
+						if(wallNumber >= 0)
+							muros[wallNumber].toggleColor();
+
+						muros.push_back(Wall(filas, columnas, size, 1, xPos, yPos, true));
+						wallNumber = muros.size() -1;
+						muros[wallNumber].toggleColor();
 					}
 				//Movimientos muro
-				else if(event.key.code == sf::Keyboard::H)
-					muros[i].move(1);
-				else if(event.key.code == sf::Keyboard::J)
-					muros[i].move(2);
-				else if(event.key.code == sf::Keyboard::K)
-					muros[i].move(3);
-				else if(event.key.code == sf::Keyboard::L)
-					muros[i].move(4);
-				//Crecer
-				else if(event.key.code == sf::Keyboard::U)
-					muros[i].grow();
-				//Disminuir
-				else if(event.key.code == sf::Keyboard::D)
-					muros[i].decrease();
-				//Rotar
-				else if(event.key.code == sf::Keyboard::R)
-					muros[i].rotate();
-				//change focus
-				else if(event.key.code == sf::Keyboard::N)
+				if(wallNumber!= -1)
 				{
-					if(i > 0)
+					if(event.key.code == sf::Keyboard::H){
+						muros[wallNumber].move(1);
+						xPos -= size;}
+					else if(event.key.code == sf::Keyboard::J){
+						muros[wallNumber].move(2);
+						yPos += size;}
+					else if(event.key.code == sf::Keyboard::K){
+						muros[wallNumber].move(3);
+						yPos -= size;}
+					else if(event.key.code == sf::Keyboard::L){
+						muros[wallNumber].move(4);
+						xPos += size;}
+					//Crecer
+					else if(event.key.code == sf::Keyboard::U)
+						muros[wallNumber].grow();
+					//Disminuir
+					else if(event.key.code == sf::Keyboard::D)
+						muros[wallNumber].decrease();
+					//Rotar
+					else if(event.key.code == sf::Keyboard::R)
+						muros[wallNumber].rotate();
+				}
+				//change focus
+				if(event.key.code == sf::Keyboard::N)
+				{
+					if(wallNumber >= 0)
 					{
-						i++;
-						if(i >= muros.size())
-							i = 0;
+						muros[wallNumber].toggleColor();//Cambia el color del anterior muro seleccionado
+
+						wallNumber++;
+						if(wallNumber >= muros.size())
+							wallNumber = 0;
+
+						muros[wallNumber].toggleColor();//Cambio el color del muro seleccionado actualmente
 					}
 				}
 				else if(event.key.code == sf::Keyboard::P)
 				{
-					if(i < 0)
+					if(wallNumber >= 0)
 					{
-						i--;
-						if(i <= 0)
-							i = muros.size() -1;
+						muros[wallNumber].toggleColor();//Cambia el color del anterior muro seleccionado
+
+						wallNumber--;
+						if(wallNumber < 0)
+							wallNumber = muros.size() -1;
+
+						if(wallNumber >= 0)
+							muros[wallNumber].toggleColor();//Cambio el color del muro seleccionado actualmente
 					}
 				}
 				//Mostrar tabla

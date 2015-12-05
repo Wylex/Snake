@@ -4,6 +4,7 @@
 
 Wall::Wall(int f, int c, int s, int length, int x, int y, bool hori): Entidad(f, c, s)
 {
+	actualColor = sf::Color(102, 51, 0);
 	xPos = x;
 	yPos = y;
 	numberSquares = length;
@@ -22,7 +23,7 @@ Wall::Wall(int f, int c, int s, int length, int x, int y, bool hori): Entidad(f,
 			objeto[i].setPosition(x, y + i*s);
 		}
 
-		objeto[i].setFillColor(sf::Color(102, 51, 0));
+		objeto[i].setFillColor(actualColor);
 	}
 }
 
@@ -82,18 +83,14 @@ void Wall::grow()
 {
 	sf::Vector2f pos = objeto[0].getPosition();
 
-	if(horizontal)
-	{
-		objeto.push_back(sf::RectangleShape(sf::Vector2f(size, size)));
-		objeto[objeto.size() -1].setPosition(pos.x + numberSquares*size, pos.y);
-	}
-	else
-	{
-		objeto.push_back(sf::RectangleShape(sf::Vector2f(size, size)));
-		objeto[objeto.size() -1].setPosition(pos.x, pos.y + numberSquares*size);
-	}
+	objeto.push_back(sf::RectangleShape(sf::Vector2f(size, size)));
 
-	objeto[numberSquares].setFillColor(sf::Color(102, 51, 0));
+	if(horizontal)
+		objeto[objeto.size() -1].setPosition(pos.x + numberSquares*size, pos.y);
+	else
+		objeto[objeto.size() -1].setPosition(pos.x, pos.y + numberSquares*size);
+
+	objeto[numberSquares].setFillColor(actualColor);
 
 	numberSquares++;
 }
@@ -111,6 +108,17 @@ void Wall::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	for(int i(0); i < objeto.size(); i++)
 		target.draw(objeto[i], states);
+}
+
+void Wall::toggleColor()
+{
+	if(actualColor == sf::Color(102, 51, 0))
+		actualColor = sf::Color(77, 155, 226);
+	else
+		actualColor = sf::Color(102, 51, 0);
+
+	for(int i(0); i < objeto.size(); i++)
+		objeto[i].setFillColor(actualColor);
 }
 
 /*double Wall::getPosicion()

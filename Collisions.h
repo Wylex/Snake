@@ -3,18 +3,11 @@
 #ifndef COLLISIONS_H
 #define COLLISIONS_H
 
-#include <vector>
-#include "Entidad.h"
+#include "Subject.h"
 
-class Collisions
+class Collisions: public Subject
 {
-    private:
-        std::vector<Entidad *> entidades;
-    
     public:
-        void add(Entidad & entity);
-        //void remove(Key llave);
-
         void check();
 };
 
